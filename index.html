@@ -1,0 +1,833 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080808">
+<title>EXTREME GYM | القوة تبدأ هنا</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{--gold:#d5a52c;--gold2:#f5d77a;--black:#080808;--card:#121212;--muted:#aaa;--white:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:85px}
+body{font-family:'Cairo',sans-serif;background:var(--black);color:#fff;overflow-x:hidden}
+button,input,select,textarea{font:inherit}
+button,a{-webkit-tap-highlight-color:transparent}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer}
+.container{width:min(1160px,92%);margin:auto}
+.gold{color:var(--gold2)}
+.section{padding:82px 0}
+.section-title{text-align:center;margin-bottom:38px}
+.section-title small{color:var(--gold);letter-spacing:3px;font-weight:800}
+.section-title h2{font-size:clamp(27px,5vw,43px);font-weight:900;margin-top:6px}
+.section-title p{color:var(--muted);margin-top:8px}
+
+header{height:76px;background:#090909ed;border-bottom:1px solid #d5a52c40;position:sticky;top:0;z-index:50;backdrop-filter:blur(15px)}
+.nav{height:100%;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:18px}
+.brand img{width:52px;height:52px;object-fit:contain;border-radius:50%}
+.brand span{color:var(--gold2)}
+.navlinks{display:flex;gap:18px;align-items:center;font-size:13px;color:#ddd}
+.navlinks a:hover{color:var(--gold2)}
+.icon-btn{width:42px;height:42px;border:1px solid #ffffff30;background:#171717;color:#fff;border-radius:50%;display:grid;place-items:center;font-size:21px;flex-shrink:0}
+.icon-btn:hover{border-color:var(--gold);color:var(--gold2)}
+.menu-toggle{display:none}
+
+.hero{min-height:620px;display:flex;align-items:center;position:relative;overflow:hidden;background:linear-gradient(90deg,#000c,#0009),url('gym1.jpg') center/cover}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#080808 0%,transparent 38%,#0004);pointer-events:none}
+.hero-content{position:relative;z-index:2;padding:90px 0;animation:rise .9s ease both}
+.eyebrow{display:inline-block;border:1px solid #d5a52c77;padding:7px 15px;border-radius:30px;color:var(--gold2);font-size:12px;letter-spacing:2px}
+.hero h1{font-size:clamp(43px,9vw,88px);line-height:1.15;font-weight:900;margin:22px 0}
+.hero h1 span{color:var(--gold2);text-shadow:0 0 35px #d5a52c30}
+.hero p{color:#ddd;max-width:550px;line-height:2;font-size:16px}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:8px;border:1px solid var(--gold);font-weight:800;transition:.25s}
+.btn-primary{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#111}
+.btn-outline{background:#111b;color:#fff}
+.btn:hover{transform:translateY(-3px);box-shadow:0 9px 28px #d5a52c24}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:45px;max-width:510px}
+.stat{border-right:2px solid var(--gold);padding:4px 14px}
+.stat strong{display:block;font-size:24px;color:var(--gold2)}
+.stat span{font-size:12px;color:#ccc}
+
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:35px;align-items:center}
+.about-img{height:410px;border-radius:14px;overflow:hidden;border:1px solid #d5a52c55}
+.about-img img{width:100%;height:100%;object-fit:cover;transition:.6s}
+.about-img:hover img{transform:scale(1.06)}
+.about-copy h3{font-size:28px;margin-bottom:15px}
+.about-copy p{color:#bbb;line-height:2.1;margin-bottom:16px}
+.features{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+.feature{padding:14px;background:#111;border:1px solid #ffffff10;border-radius:9px}
+.feature b{color:var(--gold2);display:block;margin-bottom:4px}
+.feature span{font-size:12px;color:#aaa}
+
+.pricing{background:linear-gradient(180deg,#0b0b0b,#111,#080808)}
+.price-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.price-card{background:linear-gradient(145deg,#191919,#0e0e0e);border:1px solid #ffffff16;border-radius:14px;padding:25px 17px;text-align:center;position:relative;overflow:hidden;transition:.3s}
+.price-card:hover{transform:translateY(-8px);border-color:var(--gold)}
+.price-card.popular{border-color:var(--gold);box-shadow:0 0 30px #d5a52c13}
+.price-card .tag{display:inline-block;color:#111;background:var(--gold2);font-size:11px;font-weight:900;padding:4px 10px;border-radius:20px;margin-bottom:15px}
+.price-card h3{font-size:20px}
+.price{font-size:33px;font-weight:900;color:var(--gold2);margin:12px 0}
+.price small{font-size:13px;color:#aaa}
+.price-card p{color:#aaa;font-size:13px;min-height:40px;margin-bottom:18px}
+.price-card .btn{width:100%;padding:10px 8px;font-size:13px}
+
+.hours-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.hours-card{background:var(--card);padding:28px;border-radius:13px;border:1px solid #ffffff12}
+.hours-card h3{font-size:22px;margin-bottom:15px}
+.hours-card .big-icon{font-size:30px}
+.hours-card p{color:#bbb;line-height:2}
+.hours-card strong{color:var(--gold2)}
+.note{font-size:12px;color:#999;margin-top:12px}
+
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.gallery-item{height:230px;border-radius:10px;overflow:hidden;background:#151515;position:relative}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.gallery-item:hover img{transform:scale(1.09)}
+.gallery-item:after{content:"EXTREME GYM";position:absolute;bottom:0;right:0;left:0;padding:22px 10px 10px;background:linear-gradient(transparent,#000b);font-size:11px;font-weight:800;color:var(--gold2)}
+
+.trainer-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.trainer{background:#121212;border:1px solid #ffffff10;border-radius:12px;overflow:hidden;text-align:center;transition:.3s}
+.trainer:hover{transform:translateY(-5px);border-color:#d5a52c77}
+.trainer img{width:100%;height:220px;object-fit:cover;display:block}
+.trainer h3{padding:13px 5px 2px;font-size:15px}
+.trainer p{color:var(--gold2);font-size:12px;padding-bottom:14px}
+
+/* مكان فيديو واحد فقط */
+.single-video{max-width:850px;margin:auto;background:#111;border:1px solid #d5a52c55;padding:12px;border-radius:15px;overflow:hidden;transition:.3s}
+.single-video:hover{border-color:var(--gold);transform:translateY(-4px)}
+.single-video video{display:block;width:100%;max-height:520px;aspect-ratio:16/9;object-fit:contain;border-radius:9px;background:#000}
+.single-video p{text-align:center;padding:12px 8px 4px;color:var(--gold2);font-size:14px;font-weight:700}
+
+.app-box{display:flex;align-items:center;justify-content:space-between;gap:25px;background:linear-gradient(115deg,#1c180c,#101010);border:1px solid #d5a52c55;border-radius:16px;padding:30px}
+.app-box h3{font-size:26px;margin-bottom:10px}
+.app-box p{color:#bbb;line-height:2}
+.app-icon{font-size:75px}
+
+.payment-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.payment-card{padding:25px;background:#121212;border:1px solid #d5a52c55;border-radius:13px}
+.payment-card h3{margin-bottom:10px}
+.payment-card p{color:#bbb;line-height:2;font-size:14px}
+.account-number{direction:ltr;text-align:center;font-size:clamp(19px,4vw,27px);letter-spacing:1px;color:var(--gold2);font-weight:900;padding:16px 5px;background:#080808;border:1px dashed #d5a52c66;border-radius:8px;margin:14px 0;overflow-wrap:anywhere}
+
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.contact-card{background:#111;padding:20px;border:1px solid #ffffff12;border-radius:12px;text-align:center;transition:.25s}
+.contact-card:hover{border-color:var(--gold)}
+.contact-card .c-icon{font-size:28px;margin-bottom:7px}
+.contact-card h3{font-size:16px;margin-bottom:5px}
+.contact-card p{color:#aaa;font-size:12px;overflow-wrap:anywhere}
+footer{padding:28px 0;border-top:1px solid #ffffff14;text-align:center;color:#888;font-size:12px}
+footer strong{color:var(--gold2)}
+
+.reveal{opacity:0;transform:translateY(25px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.floaters{position:fixed;z-index:60;bottom:18px;left:15px;display:flex;flex-direction:column;gap:10px}
+.float-btn{width:51px;height:51px;border-radius:50%;display:grid;place-items:center;font-size:23px;box-shadow:0 4px 18px #0009;border:1px solid #ffffff22;color:#fff}
+.float-wa{background:#168c53}
+.float-chat{background:var(--gold);color:#111;font-weight:900}
+.float-settings{position:fixed;z-index:61;bottom:20px;right:15px;width:47px;height:47px;border-radius:50%;background:#101010;color:#fff;border:1px solid #ffffff80;font-size:23px;box-shadow:0 4px 18px #0009}
+
+.chat-window{position:fixed;z-index:100;bottom:82px;left:15px;width:min(340px,calc(100vw - 30px));background:#111;border:1px solid #d5a52c99;border-radius:14px;overflow:hidden;display:none;box-shadow:0 12px 40px #000b}
+.chat-window.open{display:block;animation:rise .25s ease}
+.chat-head{background:linear-gradient(120deg,#d5a52c,#f5d77a);color:#111;padding:14px;font-weight:900;display:flex;justify-content:space-between}
+.chat-head button{border:0;background:none;font-size:22px}
+.chat-body{padding:14px;max-height:340px;overflow:auto}
+.bot-message{background:#202020;padding:12px;border-radius:10px;color:#eee;font-size:13px;line-height:1.8;margin-bottom:12px}
+.chat-options{display:grid;gap:8px}
+.chat-options button{background:#191919;border:1px solid #d5a52c66;color:#f5d77a;padding:9px;border-radius:8px;text-align:right;font-size:12px}
+.chat-input{display:flex;padding:10px;gap:6px;border-top:1px solid #ffffff15}
+.chat-input input{min-width:0;flex:1;background:#080808;color:#fff;border:1px solid #333;padding:10px;border-radius:7px}
+.chat-input button{background:var(--gold);border:0;padding:0 12px;border-radius:7px;font-weight:900}
+
+.overlay{position:fixed;z-index:200;inset:0;background:#000c;display:none;align-items:center;justify-content:center;padding:14px;overflow-y:auto}
+.overlay.show{display:flex}
+.modal{width:min(540px,100%);max-height:94vh;overflow:auto;background:#111;border:1px solid #d5a52c88;border-radius:15px;padding:23px;position:relative}
+.modal h2{font-size:24px;margin-bottom:6px}
+.modal .sub{color:#aaa;font-size:13px;line-height:1.8;margin-bottom:17px}
+.close{position:absolute;left:13px;top:10px;border:0;background:#252525;color:white;border-radius:50%;width:34px;height:34px;font-size:22px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.field.full{grid-column:1/-1}
+.field label{font-size:13px;color:#ddd}
+.field input,.field select,.field textarea{width:100%;background:#080808;color:#fff;border:1px solid #393939;border-radius:8px;padding:11px;outline:none}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold)}
+.field textarea{resize:vertical;min-height:80px}
+.selected-package{padding:12px;border-radius:8px;background:#201b0e;border:1px solid #d5a52c66;color:var(--gold2);margin:13px 0;font-weight:800}
+.form-submit{width:100%;border:0;margin-top:4px}
+.small-help{font-size:11px;color:#888;line-height:1.8;margin-top:10px}
+.admin-results{max-height:230px;overflow:auto;margin-top:12px}
+.result-item{padding:12px;background:#080808;border:1px solid #333;border-radius:8px;margin-bottom:8px;font-size:12px;line-height:1.9;overflow-wrap:anywhere}
+.admin-tabs{display:flex;gap:8px;margin:15px 0}
+.admin-tabs button{flex:1;background:#222;color:#fff;border:1px solid #444;padding:9px;border-radius:7px}
+.admin-tabs button.active{background:var(--gold);color:#111}
+.admin-pane{display:none}
+.admin-pane.active{display:block}
+.search-row{display:flex;gap:7px}
+.search-row input{flex:1;min-width:0}
+
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:900px){
+.navlinks{display:none;position:absolute;top:76px;right:0;left:0;background:#101010;padding:20px;flex-direction:column;border-bottom:1px solid #d5a52c55}
+.navlinks.open{display:flex}
+.menu-toggle{display:grid}
+.price-grid{grid-template-columns:repeat(2,1fr)}
+.trainer-grid{grid-template-columns:repeat(3,1fr)}
+.gallery-grid{grid-template-columns:repeat(3,1fr)}
+.trainer img{height:200px}
+}
+@media(max-width:600px){
+.section{padding:62px 0}
+.hero{min-height:570px;background-position:58% center}
+.hero p{font-size:14px}
+.stats{margin-top:30px}
+.about-grid,.hours-grid,.payment-grid{grid-template-columns:1fr}
+.about-img{height:300px;order:-1}
+.features{grid-template-columns:1fr 1fr}
+.gallery-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+.gallery-item{height:175px}
+.trainer-grid{grid-template-columns:repeat(2,1fr)}
+.trainer img{height:205px}
+.contact-grid{grid-template-columns:1fr}
+.app-box{padding:22px;align-items:flex-start}
+.app-icon{font-size:50px}
+.app-box h3{font-size:21px}
+.price-card{padding:20px 12px}
+.price{font-size:27px}
+.form-grid{grid-template-columns:1fr}
+.field.full{grid-column:auto}
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="container nav">
+    <a href="#home" class="brand">
+      <img src="logo.jpg" alt="EXTREME GYM" onerror="this.style.display='none'">
+      <div>EXTREME <span>GYM</span></div>
+    </a>
+    <nav class="navlinks" id="navlinks">
+      <a href="#home">الرئيسية</a>
+      <a href="#about">عن الجيم</a>
+      <a href="#prices">الاشتراكات</a>
+      <a href="#hours">المواعيد</a>
+      <a href="#gallery">الجاليري</a>
+      <a href="#trainers">المدربين</a>
+      <a href="#contact">تواصل معنا</a>
+    </nav>
+    <div style="display:flex;gap:8px">
+      <button class="icon-btn menu-toggle" onclick="document.getElementById('navlinks').classList.toggle('open')" aria-label="القائمة">☰</button>
+      <button class="icon-btn" onclick="openAdminLogin()" title="الإعدادات" aria-label="الإعدادات">⚙</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="container hero-content">
+    <span class="eyebrow">YOUR POWER. YOUR LIMIT.</span>
+    <h1>BUILD YOUR<br><span>EXTREME</span><br>SELF.</h1>
+    <p>مش مجرد جيم... دي بداية نسخة أقوى منك. تمرّن بإصرار، طوّر مستواك، وابدأ رحلتك مع EXTREME GYM.</p>
+    <div class="actions">
+      <a href="#prices" class="btn btn-primary">اختار اشتراكك ↗</a>
+      <a href="#gallery" class="btn btn-outline">اكتشف الجيم</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><strong>100%</strong><span>طاقة وإصرار</span></div>
+      <div class="stat"><strong>EXTREME</strong><span>روح التحدي</span></div>
+      <div class="stat"><strong>24/7*</strong><span>رحلتك مستمرة</span></div>
+    </div>
+    <p style="font-size:10px;color:#aaa;margin-top:8px">*مواعيد التمرين الفعلية موضحة بالأسفل.</p>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="container about-grid reveal">
+    <div class="about-copy">
+      <div class="section-title" style="text-align:right;margin-bottom:20px">
+        <small>ABOUT US</small><h2>أكتر من مجرد <span class="gold">جيم</span></h2>
+      </div>
+      <h3>قوتك بتبدأ من قرارك.</h3>
+      <p>في EXTREME GYM بنساعدك تشتغل على نفسك خطوة بخطوة، وتخلي كل تمرينة أقرب لهدفك. ابدأ من مكانك، والتزم، وسيب النتيجة تتكلم.</p>
+      <div class="features">
+        <div class="feature"><b>✦ تدريب جاد</b><span>بيئة تساعدك تركز على هدفك.</span></div>
+        <div class="feature"><b>✦ مدربين</b><span>فريق يساعدك في رحلة التمرين.</span></div>
+        <div class="feature"><b>✦ خطط اشتراك</b><span>اختار المدة المناسبة ليك.</span></div>
+        <div class="feature"><b>✦ موقع مميز</b><span>أول الهرم، بجوار مسجد نصر الدين.</span></div>
+      </div>
+      <div class="actions"><a class="btn btn-primary" href="#contact">زورنا دلوقتي</a></div>
+    </div>
+    <div class="about-img"><img src="gym2.jpg" alt="داخل EXTREME GYM" loading="lazy"></div>
+  </div>
+</section>
+
+<section class="section pricing" id="prices">
+  <div class="container">
+    <div class="section-title reveal"><small>MEMBERSHIPS</small><h2>اختار <span class="gold">اشتراكك</span></h2><p>اختار الباقة المناسبة ليك واضغط «اشترك الآن» لإدخال بياناتك.</p></div>
+    <div class="price-grid">
+      <article class="price-card reveal">
+        <h3>اشتراك شهر</h3><div class="price">750 <small>جنيه</small></div>
+        <p>ابدأ رحلتك الرياضية شهر بشهر.</p>
+        <button class="btn btn-outline" onclick="openSubscribe('اشتراك شهر',750)">اشترك الآن ←</button>
+      </article>
+      <article class="price-card popular reveal">
+        <span class="tag">اختيار مميز</span><h3>اشتراك 3 شهور</h3><div class="price">2,000 <small>جنيه</small></div>
+        <p>استمرارية أكتر وخطوة أقرب لهدفك.</p>
+        <button class="btn btn-primary" onclick="openSubscribe('اشتراك 3 شهور',2000)">اشترك الآن ←</button>
+      </article>
+      <article class="price-card reveal">
+        <h3>اشتراك 6 شهور</h3><div class="price">3,200 <small>جنيه</small></div>
+        <p>خطة أطول لبناء عادات ثابتة.</p>
+        <button class="btn btn-outline" onclick="openSubscribe('اشتراك 6 شهور',3200)">اشترك الآن ←</button>
+      </article>
+      <article class="price-card reveal">
+        <h3>اشتراك سنة</h3><div class="price">4,500 <small>جنيه</small></div>
+        <p>رحلة طويلة نحو نسخة أقوى منك.</p>
+        <button class="btn btn-outline" onclick="openSubscribe('اشتراك سنة',4500)">اشترك الآن ←</button>
+      </article>
+    </div>
+    <p class="note" style="text-align:center;margin-top:18px">الأسعار بالجنيه المصري. يُرجى التأكد من الشروط والتفاصيل النهائية مع إدارة الجيم قبل الدفع.</p>
+  </div>
+</section>
+
+<section class="section" id="hours">
+  <div class="container">
+    <div class="section-title reveal"><small>OPENING HOURS</small><h2>مواعيد <span class="gold">التمرين</span></h2><p>اختار المواعيد المناسبة ليك قبل ما تزورنا.</p></div>
+    <div class="hours-grid">
+      <div class="hours-card reveal">
+        <div class="big-icon">🏋️</div><h3>مواعيد الرجال</h3>
+        <p>السبت إلى الخميس: <strong>8 صباحًا – 2 صباحًا</strong></p>
+        <p>الجمعة: <strong>10 صباحًا – 1 صباحًا</strong></p>
+      </div>
+      <div class="hours-card reveal">
+        <div class="big-icon">✨</div><h3>مواعيد السيدات</h3>
+        <p>ابتداءً من الأحد 1 نوفمبر 2026</p>
+        <p>السبت إلى الخميس: <strong>8 صباحًا – 10 مساءً</strong></p>
+        <p>الجمعة: <strong>إجازة أسبوعية</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="gallery">
+  <div class="container">
+    <div class="section-title reveal"><small>THE GYM</small><h2>جولة داخل <span class="gold">الجيم</span></h2><p>شوف أجواء ومعدات EXTREME GYM.</p></div>
+    <div class="gallery-grid">
+      <div class="gallery-item reveal"><img src="gym1.jpg" alt="صورة الجيم 1" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="gym2.jpg" alt="صورة الجيم 2" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="gym3.jpg" alt="صورة الجيم 3" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="gym4.jpg" alt="صورة الجيم 4" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="gym5.jpg" alt="صورة الجيم 5" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="gym6.jpg" alt="صورة الجيم 6" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="gym7.jpg" alt="صورة الجيم 7" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="gym8.jpg" alt="صورة الجيم 8" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="gym9.jpg" alt="صورة الجيم 9" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="gym10.jpg" alt="صورة الجيم 10" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="gym11.jpg" alt="صورة الجيم 11" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="gym12.jpg" alt="صورة الجيم 12" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="gym13.jpg" alt="صورة الجيم 13" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="gym14.jpg" alt="صورة الجيم 14" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="gym15.jpg" alt="صورة الجيم 15" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="gym16.jpg" alt="صورة الجيم 16" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="trainers">
+  <div class="container">
+    <div class="section-title reveal"><small>OUR TEAM</small><h2>فريق <span class="gold">المدربين</span></h2><p>فريق EXTREME GYM.</p></div>
+    <div class="trainer-grid">
+      <article class="trainer reveal"><img src="ahmed.jpg" alt="أحمد محمود" loading="lazy"><h3>أحمد محمود</h3><p>TRAINER</p></article>
+      <article class="trainer reveal"><img src="amr.jpg" alt="عمرو ضياء" loading="lazy"><h3>عمرو ضياء</h3><p>TRAINER</p></article>
+      <article class="trainer reveal"><img src="badr.jpg" alt="بدر جمال" loading="lazy"><h3>بدر جمال</h3><p>TRAINER</p></article>
+      <article class="trainer reveal"><img src="mokhtar.jpg" alt="مختار" loading="lazy"><h3>مختار</h3><p>TRAINER</p></article>
+      <article class="trainer reveal"><img src="bibo.jpg" alt="بيبو" loading="lazy"><h3>بيبو</h3><p>TRAINER</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- فيديو واحد فقط -->
+<section class="section" id="videos">
+  <div class="container">
+    <div class="section-title reveal">
+      <small>WATCH US</small>
+      <h2>من داخل <span class="gold">EXTREME</span></h2>
+      <p>شاهد أجواء التمرين داخل الجيم.</p>
+    </div>
+    <div class="single-video reveal">
+      <video controls playsinline preload="metadata" poster="gym1.jpg">
+        <source src="video1.mp4" type="video/mp4">
+        المتصفح لا يدعم تشغيل الفيديو.
+      </video>
+      <p>أجواء التمرين في EXTREME GYM</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="app-box reveal">
+      <div><small class="gold">EXTREME APP</small><h3>خليك أقرب لرحلتك</h3><p>تقدر تفتح تطبيق EXTREME من Google Play وتراجع تفاصيله بنفسك.</p>
+        <div class="actions"><a class="btn btn-primary" target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.extreme.z10.members">افتح التطبيق ↗</a></div>
+      </div>
+      <div class="app-icon">📱</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="payment">
+  <div class="container">
+    <div class="section-title reveal"><small>PAYMENT OPTIONS</small><h2>طرق <span class="gold">الدفع</span></h2><p>اختار وسيلة الدفع المناسبة، وأكّد التفاصيل مع الإدارة.</p></div>
+    <div class="payment-grid">
+      <div class="payment-card reveal">
+        <h3>🏦 InstaPay – بنك مصر</h3>
+        <p>رقم الحساب المستخدم للتحويل:</p>
+        <div class="account-number" id="instapayNumber">1230001000004856</div>
+        <div class="actions">
+          <button class="btn btn-primary" onclick="copyInstapay()">نسخ رقم الحساب</button>
+          <button class="btn btn-outline" onclick="sendTransferScreenshot()">إرسال صورة التحويل</button>
+        </div>
+        <p class="small-help">بعد التحويل، افتح واتساب وأرفق صورة التحويل بنفسك في المحادثة.</p>
+      </div>
+      <div class="payment-card reveal">
+        <h3>💳 خيارات تقسيط محتملة</h3>
+        <p>قد تتوفر خيارات مثل Forsa أو Souhoola أو Valu وفقًا للشروط والموافقة المتاحة.</p>
+        <p style="margin-top:10px">تأكد من إتاحة الخدمة والرسوم وشروط التقسيط من إدارة الجيم قبل إتمام أي معاملة.</p>
+        <button class="btn btn-outline" style="margin-top:15px" onclick="contactWhatsApp('عايز أستفسر عن طرق التقسيط المتاحة وشروطها.')">اسأل الإدارة على واتساب</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="container">
+    <div class="section-title reveal"><small>GET IN TOUCH</small><h2>مستني <span class="gold">إيه؟</span></h2><p>تواصل معنا واعرف تفاصيل الاشتراك والزيارة.</p></div>
+    <div class="contact-grid">
+      <a class="contact-card reveal" target="_blank" rel="noopener" href="https://wa.me/201023286633"><div class="c-icon">🟢</div><h3>WhatsApp</h3><p>+20 102 328 6633</p></a>
+      <a class="contact-card reveal" target="_blank" rel="noopener" href="https://www.instagram.com/extreme_gym_official/"><div class="c-icon">📸</div><h3>Instagram</h3><p>@extreme_gym_official</p></a>
+      <a class="contact-card reveal" target="_blank" rel="noopener" href="https://www.facebook.com/share/1CmCKz2skW/"><div class="c-icon">📘</div><h3>Facebook</h3><p>تابع صفحة الجيم</p></a>
+    </div>
+    <div style="text-align:center;margin-top:28px" class="reveal">
+      <p style="color:#aaa;line-height:2">📍 101 شارع نصر الدين، بجوار مسجد نصر الدين، أول الهرم، الجيزة</p>
+      <a class="btn btn-primary" style="margin-top:14px" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=101+شارع+نصر+الدين+بجوار+مسجد+نصر+الدين+اول+الهرم+الجيزة">افتح الموقع على الخريطة ↗</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <strong>EXTREME GYM</strong>
+    <p style="margin-top:7px">قوتك تبدأ بقرارك. خليك Extreme.</p>
+    <p style="margin-top:8px">© <span id="year"></span> EXTREME GYM. All rights reserved.</p>
+  </div>
+</footer>
+
+<div class="floaters">
+  <a class="float-btn float-wa" href="https://wa.me/201023286633" target="_blank" rel="noopener" aria-label="واتساب">☏</a>
+  <button class="float-btn float-chat" onclick="toggleChat()" aria-label="افتح المساعد">✦</button>
+</div>
+<button class="float-settings" onclick="openAdminLogin()" title="الإعدادات" aria-label="الإعدادات">⚙</button>
+
+<div class="chat-window" id="chatWindow">
+  <div class="chat-head"><span>✦ مساعد EXTREME</span><button onclick="toggleChat()" aria-label="إغلاق">×</button></div>
+  <div class="chat-body" id="chatBody">
+    <div class="bot-message">أهلًا بيك في EXTREME GYM! 💪 أقدر أساعدك تعرف الأسعار والمواعيد وطرق التواصل.</div>
+    <div class="chat-options">
+      <button onclick="botReply('الأسعار: شهر 750 جنيه، 3 شهور 2000 جنيه، 6 شهور 3200 جنيه، سنة 4500 جنيه. اضغط على باقتك في قسم الاشتراكات لتسجيل بياناتك.')">💰 أسعار الاشتراكات</button>
+      <button onclick="botReply('مواعيد الرجال: السبت إلى الخميس من 8 صباحًا إلى 2 صباحًا، والجمعة من 10 صباحًا إلى 1 صباحًا. مواعيد السيدات الشتوية تبدأ 1 نوفمبر 2026: السبت إلى الخميس 8 صباحًا إلى 10 مساءً، والجمعة إجازة.')">🕒 مواعيد التمرين</button>
+      <button onclick="botReply('عنواننا: 101 شارع نصر الدين، بجوار مسجد نصر الدين، أول الهرم، الجيزة. تواصل مع الإدارة على واتساب.')">📍 العنوان</button>
+      <button onclick="contactWhatsApp('أريد الاستفسار عن الاشتراكات في EXTREME GYM.')">💬 تحدث مع الإدارة</button>
+    </div>
+  </div>
+  <form class="chat-input" onsubmit="sendChatMessage(event)">
+    <input id="chatInput" placeholder="اكتب سؤالك هنا..." autocomplete="off">
+    <button type="submit">إرسال</button>
+  </form>
+</div>
+
+<div class="overlay" id="subscribeOverlay" onclick="overlayClose(event,'subscribeOverlay')">
+  <div class="modal">
+    <button class="close" onclick="closeModal('subscribeOverlay')" aria-label="إغلاق">×</button>
+    <h2>طلب <span class="gold">اشتراك جديد</span></h2>
+    <p class="sub">اكتب بياناتك واختار وسيلة الدفع. عند إرسال الطلب هتفتح رسالة واتساب جاهزة للإدارة.</p>
+    <div class="selected-package" id="selectedPackage">الباقة المختارة</div>
+    <form id="subscribeForm" onsubmit="submitSubscription(event)">
+      <div class="form-grid">
+        <div class="field">
+          <label for="clientName">الاسم بالكامل *</label>
+          <input id="clientName" name="clientName" required maxlength="100" placeholder="اكتب اسمك">
+        </div>
+        <div class="field">
+          <label for="clientPhone">رقم الموبايل *</label>
+          <input id="clientPhone" name="clientPhone" required type="tel" inputmode="tel" maxlength="20" placeholder="01xxxxxxxxx">
+        </div>
+        <div class="field">
+          <label for="clientGender">نوع الاشتراك *</label>
+          <select id="clientGender" name="clientGender" required>
+            <option value="">اختار</option><option>رجال</option><option>سيدات</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="clientPayment">طريقة الدفع *</label>
+          <select id="clientPayment" name="clientPayment" required>
+            <option value="">اختار طريقة الدفع</option>
+            <option>InstaPay - بنك مصر</option>
+            <option>الدفع في الجيم</option>
+            <option>Forsa - بعد تأكيد الإتاحة</option>
+            <option>Souhoola - بعد تأكيد الإتاحة</option>
+            <option>Valu - بعد تأكيد الإتاحة</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label for="clientNotes">ملاحظات (اختياري)</label>
+          <textarea id="clientNotes" name="clientNotes" maxlength="500" placeholder="أي تفاصيل إضافية أو استفسار..."></textarea>
+        </div>
+      </div>
+      <button class="btn btn-primary form-submit" type="submit">إرسال طلب الاشتراك على واتساب ↗</button>
+      <p class="small-help">إرسال الطلب لا يعني تأكيد الحجز أو الدفع. الإدارة هتراجع التفاصيل معاك على واتساب.</p>
+    </form>
+  </div>
+</div>
+
+<div class="overlay" id="loginOverlay" onclick="overlayClose(event,'loginOverlay')">
+  <div class="modal">
+    <button class="close" onclick="closeModal('loginOverlay')" aria-label="إغلاق">×</button>
+    <h2>⚙ <span class="gold">إدارة الموقع</span></h2>
+    <p class="sub">أدخل كلمة مرور الإدارة لفتح لوحة التحكم وصفحة البحث السرية.</p>
+    <form onsubmit="adminLogin(event)">
+      <div class="field"><label for="adminPassword">كلمة المرور</label><input type="password" id="adminPassword" required placeholder="كلمة المرور"></div>
+      <button class="btn btn-primary form-submit" type="submit">دخول</button>
+    </form>
+    <p class="small-help">تنبيه: حماية لوحة الإدارة بكلمة مرور داخل صفحة ثابتة ليست حماية حقيقية للبيانات الحساسة.</p>
+  </div>
+</div>
+
+<div class="overlay" id="adminOverlay" onclick="overlayClose(event,'adminOverlay')">
+  <div class="modal">
+    <button class="close" onclick="closeModal('adminOverlay')" aria-label="إغلاق">×</button>
+    <h2>لوحة <span class="gold">الإدارة</span></h2>
+    <p class="sub">صفحة البحث السرية وملخص طلبات الاشتراك المحفوظة على هذا المتصفح.</p>
+    <div class="admin-tabs">
+      <button class="active" onclick="showAdminTab('searchTab',this)">البحث عن طلب</button>
+      <button onclick="showAdminTab('requestsTab',this)">الطلبات المحلية</button>
+      <button onclick="showAdminTab('filesTab',this)">فحص الصور</button>
+    </div>
+    <div class="admin-pane active" id="searchTab">
+      <div class="field">
+        <label for="adminSearch">ابحث بالاسم أو رقم الهاتف</label>
+        <div class="search-row"><input id="adminSearch" placeholder="اكتب كلمة البحث"><button class="btn btn-primary" onclick="searchRequests()" type="button">بحث</button></div>
+      </div>
+      <div class="admin-results" id="searchResults"><p class="small-help">اكتب اسم العميل أو رقم الهاتف للبحث في الطلبات المحلية المحفوظة على هذا الجهاز.</p></div>
+    </div>
+    <div class="admin-pane" id="requestsTab">
+      <p class="small-help">هذه الطلبات لا تُجمع تلقائيًا من زوار الموقع؛ ستظهر فقط الطلبات التي حُفظت محليًا في هذا المتصفح.</p>
+      <div class="admin-results" id="allRequests"></div>
+      <button class="btn btn-outline" style="width:100%;margin-top:10px" onclick="exportRequests()">تصدير الطلبات المحلية CSV</button>
+      <button class="btn btn-outline" style="width:100%;margin-top:8px" onclick="clearRequests()">مسح الطلبات المحلية</button>
+    </div>
+    <div class="admin-pane" id="filesTab">
+      <p class="small-help">فحص وجود الصور والفيديو الواحد في الصفحة. هذا لا يرفع الملفات ولا يغيّر ملفات GitHub.</p>
+      <button class="btn btn-primary" style="width:100%" onclick="checkMediaFiles()">فحص الصور والفيديو</button>
+      <div class="admin-results" id="mediaResults"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const WHATSAPP_NUMBER = "201023286633";
+const INSTAPAY_NUMBER = "1230001000004856";
+const ADMIN_PASSWORD = "1#1#1#";
+let selectedPlan = {name:"",price:0};
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+function openSubscribe(name,price){
+  selectedPlan={name,price};
+  document.getElementById("selectedPackage").textContent=
+    name+" — "+Number(price).toLocaleString("en-US")+" جنيه مصري";
+  document.getElementById("subscribeOverlay").classList.add("show");
+  document.body.style.overflow="hidden";
+}
+function openAdminLogin(){
+  document.getElementById("loginOverlay").classList.add("show");
+  document.body.style.overflow="hidden";
+}
+function closeModal(id){
+  document.getElementById(id).classList.remove("show");
+  if(!document.querySelector(".overlay.show"))document.body.style.overflow="";
+}
+function overlayClose(event,id){
+  if(event.target.id===id)closeModal(id);
+}
+
+function submitSubscription(event){
+  event.preventDefault();
+  const name=document.getElementById("clientName").value.trim();
+  const phone=document.getElementById("clientPhone").value.trim();
+  const gender=document.getElementById("clientGender").value;
+  const payment=document.getElementById("clientPayment").value;
+  const notes=document.getElementById("clientNotes").value.trim();
+
+  if(!name||!phone||!gender||!payment){
+    alert("من فضلك أكمل البيانات المطلوبة.");
+    return;
+  }
+
+  const request={
+    name,phone,gender,payment,notes,
+    plan:selectedPlan.name,
+    price:selectedPlan.price,
+    createdAt:new Date().toLocaleString("ar-EG")
+  };
+
+  try{
+    const requests=JSON.parse(localStorage.getItem("extremeGymRequests")||"[]");
+    requests.push(request);
+    localStorage.setItem("extremeGymRequests",JSON.stringify(requests));
+  }catch(e){}
+
+  const message=
+`طلب اشتراك جديد - EXTREME GYM
+الاسم: ${name}
+رقم الموبايل: ${phone}
+نوع الاشتراك: ${gender}
+الباقة: ${selectedPlan.name}
+السعر: ${selectedPlan.price} جنيه
+طريقة الدفع: ${payment}
+ملاحظات: ${notes||"لا يوجد"}
+يرجى تأكيد تفاصيل الاشتراك.`;
+
+  closeModal("subscribeOverlay");
+  window.open("https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(message),"_blank");
+}
+
+function contactWhatsApp(message){
+  window.open("https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(message),"_blank");
+}
+
+async function copyInstapay(){
+  try{
+    await navigator.clipboard.writeText(INSTAPAY_NUMBER);
+    alert("تم نسخ رقم InstaPay.");
+  }catch(e){
+    const field=document.createElement("textarea");
+    field.value=INSTAPAY_NUMBER;
+    document.body.appendChild(field);
+    field.select();
+    const ok=document.execCommand("copy");
+    field.remove();
+    alert(ok?"تم نسخ رقم InstaPay.":"انسخ الرقم يدويًا: "+INSTAPAY_NUMBER);
+  }
+}
+
+function sendTransferScreenshot(){
+  contactWhatsApp("أهلًا، أريد إرسال صورة تحويل InstaPay الخاصة باشتراكي في EXTREME GYM. سأرفق صورة التحويل في المحادثة.");
+}
+function toggleChat(){
+  document.getElementById("chatWindow").classList.toggle("open");
+}
+function botReply(text){
+  const body=document.getElementById("chatBody");
+  const message=document.createElement("div");
+  message.className="bot-message";
+  message.textContent=text;
+  body.appendChild(message);
+  body.scrollTop=body.scrollHeight;
+}
+
+function sendChatMessage(event){
+  event.preventDefault();
+  const input=document.getElementById("chatInput");
+  const text=input.value.trim();
+  if(!text)return;
+
+  const body=document.getElementById("chatBody");
+  const user=document.createElement("div");
+  user.className="bot-message";
+  user.style.border="1px solid #d5a52c55";
+  user.textContent="أنت: "+text;
+  body.appendChild(user);
+  input.value="";
+
+  let answer="للحصول على تأكيد دقيق، تواصل مع إدارة الجيم على واتساب.";
+  const q=text.toLowerCase();
+
+  if(q.includes("سعر")||q.includes("اشتراك")||q.includes("بكام")){
+    answer="الأسعار: شهر 750 جنيه، 3 شهور 2000 جنيه، 6 شهور 3200 جنيه، سنة 4500 جنيه. اختار باقتك من قسم الاشتراكات.";
+  }else if(q.includes("مواعيد")||q.includes("يفتح")||q.includes("الساعة")){
+    answer="الرجال: السبت إلى الخميس 8 صباحًا–2 صباحًا، والجمعة 10 صباحًا–1 صباحًا. السيدات شتاءً: السبت إلى الخميس 8 صباحًا–10 مساءً، والجمعة إجازة.";
+  }else if(q.includes("عنوان")||q.includes("فين")||q.includes("مكان")){
+    answer="عنواننا: 101 شارع نصر الدين، بجوار مسجد نصر الدين، أول الهرم، الجيزة.";
+  }else if(q.includes("انستا")||q.includes("تحويل")||q.includes("دفع")){
+    answer="راجع قسم طرق الدفع بالموقع، وتأكد من تفاصيل الدفع مع الإدارة قبل التحويل.";
+  }
+
+  botReply(answer);
+  body.scrollTop=body.scrollHeight;
+}
+
+function adminLogin(event){
+  event.preventDefault();
+  const pass=document.getElementById("adminPassword").value;
+
+  if(pass!==ADMIN_PASSWORD){
+    alert("كلمة المرور غير صحيحة.");
+    return;
+  }
+
+  closeModal("loginOverlay");
+  document.getElementById("adminPassword").value="";
+  document.getElementById("adminOverlay").classList.add("show");
+  document.body.style.overflow="hidden";
+  renderLocalRequests();
+}
+
+function showAdminTab(id,button){
+  document.querySelectorAll(".admin-pane").forEach(p=>p.classList.remove("active"));
+  document.querySelectorAll(".admin-tabs button").forEach(b=>b.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  button.classList.add("active");
+}
+
+function getLocalRequests(){
+  try{return JSON.parse(localStorage.getItem("extremeGymRequests")||"[]");}
+  catch(e){return [];}
+}
+
+function safeText(value){
+  return String(value??"").replace(/[&<>"']/g,c=>({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[c]));
+}
+
+function renderRequest(request){
+  return `<div class="result-item">
+    <b>${safeText(request.name)}</b><br>
+    الموبايل: ${safeText(request.phone)}<br>
+    النوع: ${safeText(request.gender)}<br>
+    الباقة: ${safeText(request.plan)} — ${safeText(request.price)} جنيه<br>
+    الدفع: ${safeText(request.payment)}<br>
+    التاريخ: ${safeText(request.createdAt)}<br>
+    ملاحظات: ${safeText(request.notes||"لا يوجد")}
+  </div>`;
+}
+
+function renderLocalRequests(){
+  const requests=getLocalRequests().slice().reverse();
+  const box=document.getElementById("allRequests");
+  box.innerHTML=requests.length?requests.map(renderRequest).join(""):
+    '<p class="small-help">لا توجد طلبات محفوظة محليًا على هذا المتصفح.</p>';
+}
+
+function searchRequests(){
+  const term=document.getElementById("adminSearch").value.trim().toLowerCase();
+  const requests=getLocalRequests().filter(r=>
+    String(r.name).toLowerCase().includes(term)||
+    String(r.phone).toLowerCase().includes(term)
+  ).reverse();
+
+  document.getElementById("searchResults").innerHTML=requests.length?
+    requests.map(renderRequest).join(""):
+    '<p class="small-help">لا توجد نتائج محلية مطابقة. الطلبات التي تصل على واتساب لا تظهر هنا تلقائيًا.</p>';
+}
+
+function clearRequests(){
+  if(!confirm("هل أنت متأكد من مسح الطلبات المحلية المحفوظة في هذا المتصفح؟"))return;
+  localStorage.removeItem("extremeGymRequests");
+  renderLocalRequests();
+  document.getElementById("searchResults").innerHTML="";
+}
+
+function exportRequests(){
+  const rows=getLocalRequests();
+  if(!rows.length){
+    alert("لا توجد طلبات محلية للتصدير.");
+    return;
+  }
+
+  const columns=["name","phone","gender","plan","price","payment","notes","createdAt"];
+  const csv="\uFEFF"+[columns.join(","),...rows.map(r=>
+    columns.map(k=>'"'+String(r[k]??"").replace(/"/g,'""')+'"').join(",")
+  )].join("\r\n");
+
+  const blob=new Blob([csv],{type:"text/csv;charset=utf-8;"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url;
+  a.download="extreme-gym-local-requests.csv";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+/* فحص الصور والفيديو الواحد فقط */
+function checkMediaFiles(){
+  const box=document.getElementById("mediaResults");
+  box.innerHTML="";
+
+  const files=[
+    "logo.jpg",
+    ...Array.from({length:16},(_,i)=>`gym${i+1}.jpg`),
+    "ahmed.jpg","amr.jpg","badr.jpg","mokhtar.jpg","bibo.jpg",
+    "video1.mp4"
+  ];
+
+  files.forEach(file=>{
+    const isVideo=file.endsWith(".mp4");
+    const media=document.createElement(isVideo?"video":"img");
+    const item=document.createElement("div");
+    item.className="result-item";
+    item.textContent=file+" — جاري الفحص...";
+
+    let done=false;
+    function success(){
+      if(done)return;
+      done=true;
+      item.textContent=file+" — تم التحميل بنجاح";
+    }
+    function failure(){
+      if(done)return;
+      done=true;
+      item.textContent=file+" — لم يتم العثور عليه أو تعذر تحميله";
+    }
+
+    if(isVideo){
+      media.onloadedmetadata=success;
+      media.onerror=failure;
+      media.preload="metadata";
+    }else{
+      media.onload=success;
+      media.onerror=failure;
+    }
+
+    media.src=file;
+    box.appendChild(item);
+  });
+}
+
+document.querySelectorAll("#navlinks a").forEach(a=>
+  a.addEventListener("click",()=>{
+    document.getElementById("navlinks").classList.remove("open");
+  })
+);
+
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:.08});
+
+document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
+
